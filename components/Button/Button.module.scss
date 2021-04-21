@@ -71,6 +71,12 @@ $h-s: 24px;
     display: block;
     width: 100%;
   }
+  &.--var-full-width-mobile {
+    @include mobile-only {
+      display: block;
+      width: 100%;
+    }
+  }
   > ._buttonContent {
     &.--loading {
       visibility: hidden;

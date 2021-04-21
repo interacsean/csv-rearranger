@@ -12,5 +12,6 @@ export interface ButtonProps extends ComponentWithChildren, ComponentWithClassNa
   disabled?: boolean;
   loading?: boolean;
   'full-width'?: boolean;
+  'full-width-mobile'?: boolean;
   type?: 'button' | 'submit' | 'reset' | undefined;
 }

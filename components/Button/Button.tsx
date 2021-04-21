@@ -33,6 +33,7 @@ const Button = (props: ButtonProps) => {
         props.small && css['--size-small'],
         props.disabled && css['--state-disabled'],
         props['full-width'] && css['--var-full-width'],
+        props['full-width-mobile'] && css['--var-full-width-mobile'],
       ])}
       disabled={props.disabled}
       type={props.type}
