@@ -5,6 +5,6 @@ import {
 export const formState = atom({
   key: 'formState',
   default: {
-    csv: '',
+    csvData: [] as string[][],
   },
 });

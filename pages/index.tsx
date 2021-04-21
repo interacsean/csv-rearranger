@@ -1,31 +1,19 @@
 import React from 'react';
-import { useRecoilState } from 'recoil';
-
+import { useRouter } from 'next/router';
 import Layout from '../components/Layout/Layout'
-import useProcessFileUploadInput from '../utils/Html/useProcessFileUploadInput';
 import Button from '../components/Button/Button';
 import Box from '../components/Box/Box';
-import { formState } from '../state/formState';
+import css from './index/index.module.scss';
+import useProcessFileUploadInput from './index/useProcessFileUploadInput';
+import { useFormStateUpdater } from './index/useFormStateUpdater';
 
-import css from './index.module.scss';
-import { useRouter } from 'next/router';
-
-const useFormStateUpdater = (fileContents: string | null) => {
-  const { 1: setForm } = useRecoilState(formState);
-
-  React.useEffect(
-    () => {
-      if (fileContents) {
-        console.log('setting file conents')
-        setForm((curVal) => ({ ...curVal, csv: fileContents }));
-      }
-    },
-    [fileContents],
-  );
-}
-
-const IndexPage = () => {
-  const [isFileProcessing, fileContents, handleFileUpload] = useProcessFileUploadInput()
+export default function IndexPage() {
+  const {
+    isProcessing,
+    isError,
+    fileContents,
+    handleFileUpload,
+  } = useProcessFileUploadInput()
   useFormStateUpdater(fileContents);
 
   const router = useRouter();
@@ -35,28 +23,30 @@ const IndexPage = () => {
     <Layout title="Sample processor">
       <h1>File upload</h1>
       <p className="mb-1-2">
-        Select a CSV/TSV file to upload:
+        Select a CSV file to upload:
       </p>
       <p className="mt-1-2">(<a href="/sample.csv">Download a test csv file here</a>)</p>
       <Box mv={2}>
         <input
           type="file"
-          accept=".csv,.tsv"
+          accept=".csv"
           onChange={handleFileUpload}
-          disabled={isFileProcessing}
+          disabled={isProcessing}
         />
-        {isFileProcessing ? (
+        {isError ? (
+          <Box tagName="p" mt={1 / 3} className={css.errorText}>&times; Please check you have selected a valid CSV file</Box>
+        ) : isProcessing ? (
           <p>Processing...</p>
         ) : !!fileContents && (
           <Box tagName="p" mt={1 / 3} className={css.successText}>&#10003; Successfully loaded sheet</Box>
         )}
       </Box>
       <Box mv={1}>
-        <Button disabled={!fileContents} onClick={onNextClick}>Next</Button>
+        <Button disabled={!fileContents || isError} onClick={onNextClick} full-width-mobile>
+          Next
+        </Button>
       </Box>
-      <p className={css.securityMsg}>&#128274; Your file will be securely processed on your browser</p>
+      <p className={css.securityMsg}>&#128274; Files are securely processed without ever leaving your browser</p>
     </Layout>
   );
 }
-
-export default IndexPage

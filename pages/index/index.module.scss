@@ -1,12 +1,17 @@
-@import '../theme/common';
+@import '../../theme/common';
 
 .successText {
   color: $clr-content-success;
+}
+.errorText {
+  color: $clr-content-warning;
 }
 
 .securityMsg {
   padding: $pad;
   background-color: $clr-panel;
   color: $clr-light;
-  display: inline-block;
+  @include tablet-plus {
+    display: inline-block;
+  }
 }
