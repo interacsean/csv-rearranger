@@ -1,9 +1,14 @@
 $clr-background: #f2f3f6;
-$clr-section-altPanel-bg: #474753;
+$clr-panel: #a9b5d6;
+$clr-section-alt-bg: #474753;
 $clr-light: #ffffff;
 
 $clr-content: #161616;
+$clr-content-success: #1e8a00;
+$clr-content-warning: #b83600;
 
 $clr-primary: #2462c3;
-$clr-primary-dk: #133e83;
+$clr-primary-dk: darken($clr-primary, 20%);
+$clr-secondary: #0f0;
+$clr-secondary-dk: darken($clr-secondary, 20%);
 $clr-neutral: #697180;

@@ -1,3 +1,3 @@
 export interface ComponentWithClassNames {
-  className: string | (string | false)[];
+  className?: string | (string | false)[];
 }

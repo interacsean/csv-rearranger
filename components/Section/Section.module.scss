@@ -2,7 +2,7 @@
 
 .sectionCtnr {
   &.__altPanel {
-    background-color: $clr-section-altPanel-bg;
+    background-color: $clr-section-alt-bg;
   }
   &.__vPad {
     @include padding-vertical($section-default-padding-v);
