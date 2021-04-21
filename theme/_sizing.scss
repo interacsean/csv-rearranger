@@ -8,3 +8,9 @@ $pad-4: $pad-3 * $golden-ratio;
 $pad-1-2: $pad / $golden-ratio;
 $pad-1-3: $pad-1-2 / $golden-ratio;
 $pad-1-4: $pad-1-3 / $golden-ratio;
+
+$section-max-width: 1200px;
+$section-default-padding-v: $pad;
+$body-padding-h: $pad-1-2;
+$body-padding-h-tab: $pad;
+$body-padding-h-dsk: $pad-2;

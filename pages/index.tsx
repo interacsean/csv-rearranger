@@ -1,12 +1,12 @@
 import Link from 'next/link'
-import Layout from '../components/Layout'
+import Layout from '../components/Layout/Layout'
 
-import css from './index.module.scss';
+// import css from './index.module.scss';
 
 const IndexPage = () => (
   <Layout title="Home | Next.js + TypeScript Example">
     <h1>Hello Next.js 👋</h1>
-    <p className={css.st}>
+    <p>
       <Link href="/about">
         <a>About</a>
       </Link>

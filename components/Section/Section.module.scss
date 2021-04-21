@@ -1,0 +1,21 @@
+@import '../../theme/common';
+
+.sectionCtnr {
+  &.__altPanel {
+    background-color: $clr-section-altPanel-bg;
+  }
+  &.__vPad {
+    @include padding-vertical($section-default-padding-v);
+  }
+}
+.sectionInner {
+  @include margin-horizontal(auto);
+  @include padding-horizontal($body-padding-h);
+  @include tablet-plus {
+    @include padding-horizontal($body-padding-h-tab);
+  }
+  @include desktop-small-plus {
+    @include padding-horizontal($body-padding-h-dsk);
+  }
+  max-width: $section-max-width;
+}

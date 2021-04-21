@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { sampleUserData } from '../../../utils/sample-data'
+
+const sampleUserData = [] as null[];
 
 const handler = (_req: NextApiRequest, res: NextApiResponse) => {
   try {

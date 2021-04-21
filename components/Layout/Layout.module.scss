@@ -1,0 +1,11 @@
+@import '../../theme/common';
+
+.container {
+  min-height: calc(100vh - #{$pad});
+  > ._card {
+    min-height: 40vh;
+    @include tablet-large-plus {
+      @include margin-horizontal($pad-3);
+    }
+  }
+}

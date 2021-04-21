@@ -1,0 +1,25 @@
+
+@mixin padding-horizontal($amount) {
+  padding-left: $amount;
+  padding-right: $amount;
+}
+
+@mixin padding-vertical($amount) {
+  padding-top: $amount;
+  padding-bottom: $amount;
+}
+
+@mixin margin-horizontal($amount) {
+  margin-left: $amount;
+  margin-right: $amount;
+}
+
+@mixin margin-vertical($amount) {
+  margin-top: $amount;
+  margin-bottom: $amount;
+}
+
+@mixin margin-vertical($amount) {
+  margin-top: $amount;
+  margin-bottom: $amount;
+}

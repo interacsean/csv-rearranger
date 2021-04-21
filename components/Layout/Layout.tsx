@@ -1,5 +1,10 @@
 import React, { ReactNode } from 'react'
 import Head from 'next/head'
+import Box from '../Box/Box';
+
+import css from './Layout.module.scss';
+import Card from '../Card/Card.view';
+import Section from '../Section/Section';
 
 type Props = {
   children?: ReactNode
@@ -14,7 +19,13 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet" />
     </Head>
-    {children}
+    <Section noVPad>
+      <Box flex-center flex-col flex-sec="stretch" className={css.container}>
+        <Card className={css._card}>
+          {children}
+        </Card>
+      </Box>
+    </Section>
   </>
 )
 
