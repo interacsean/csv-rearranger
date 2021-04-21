@@ -1,4 +1,10 @@
-# TypeScript Next.js example
+# TypeScript Next.js with SASS example
+
+Includes some basic components, structure around setting up SASS/SCSS theme, SCSS utilities
+
+_(Default NextJS starter documentation follows)_
+
+---
 
 This is a really simple project that shows the usage of Next.js with TypeScript.
 
