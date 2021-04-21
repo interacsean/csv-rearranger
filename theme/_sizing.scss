@@ -1,0 +1,10 @@
+$pad: 16px;
+$golden-ratio: 1.618;
+// - multiples
+$pad-2: $pad * $golden-ratio;
+$pad-3: $pad-2 * $golden-ratio;
+$pad-4: $pad-3 * $golden-ratio;
+// - fractions
+$pad-1-2: $pad / $golden-ratio;
+$pad-1-3: $pad-1-2 / $golden-ratio;
+$pad-1-4: $pad-1-3 / $golden-ratio;

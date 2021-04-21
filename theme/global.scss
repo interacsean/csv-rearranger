@@ -1,0 +1,14 @@
+@import './common';
+
+html,
+body {
+  background-color: $clr-background;
+  font-size: #{$base-font-size * 14.5/16};
+  font-family: $font-content;
+  @include tablet-only {
+    font-size: #{$base-font-size-tab * 15.25/16};
+  }
+  @include desktop-small-plus {
+    font-size: $base-font-size-dsk;
+  }
+}
