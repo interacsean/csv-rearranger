@@ -1,1 +1,12 @@
+@import '../theme/common';
 
+.successText {
+  color: $clr-content-success;
+}
+
+.securityMsg {
+  padding: $pad;
+  background-color: $clr-panel;
+  color: $clr-light;
+  display: inline-block;
+}
