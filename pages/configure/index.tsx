@@ -17,14 +17,7 @@ function Handle(props: ComponentWithClassNames) {
 }
 
 export default function ConfigurePage() {
-  const { csvData } = useConfigureLogic();
-  const headers = React.useMemo(() => Object.keys(csvData[0] || {}), [csvData]);
-  console.log(headers);
-
-  const onDragEnd = React.useCallback(
-    (x) => console.log(x),
-    [],
-  );
+  const { headers, onDragEnd } = useConfigureLogic();
 
   return (
     <Layout title="Sample processor">
@@ -32,48 +25,54 @@ export default function ConfigurePage() {
         <a>&lt; Back</a>
       </Link>
       <h1>Configure data</h1>
-      <p>Prioritise your data fields based on relative importance when matching candidates.</p>
-      <ul>
-        <li>Drag to reorder the fields</li>
-        <li>Fields at the top have higher priority</li>
-        <li>Uncheck any fields to exclude them from </li>
-      </ul>
-      {/*
-       Sample: https://codesandbox.io/s/k260nyxq9v?file=/index.js:585-1069
-      */}
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Droppable droppableId="droppable">
-          {(provided, snapshot) => (
-            <div
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-              className={css.dragCtnr}
-            >
-              {headers.map((header, index) => (
-                <Draggable key={header} draggableId={header} index={index}>
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      style={provided.draggableProps.style}
-                      className={clx([
-                        'flex --sec-center',
-                        css.draggableHeading,
-                        snapshot.isDragging && css.__dragging,
-                      ])}
-                    >
-                      {header}
-                      <Handle className={css._handle} />
-                    </div>
-                  )}
-                </Draggable>
-              ))}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
+      {!headers ? (
+        "..."
+      ) : (
+        <>
+          <p>Prioritise your data fields based on relative importance when matching candidates.</p>
+          <ul>
+            <li>Drag to reorder the fields</li>
+            <li>Fields at the top have higher priority</li>
+            <li>Uncheck any fields to exclude them from </li>
+          </ul>
+          {/*
+           Sample: https://codesandbox.io/s/k260nyxq9v?file=/index.js:585-1069
+          */}
+          <DragDropContext onDragEnd={onDragEnd}>
+            <Droppable droppableId="droppable">
+              {(provided, snapshot) => (
+                <div
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                  className={css.dragCtnr}
+                >
+                  {headers.map((header, index) => (
+                    <Draggable key={header.name} draggableId={header.name} index={index}>
+                      {(provided, snapshot) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          style={provided.draggableProps.style}
+                          className={clx([
+                            'flex --sec-center',
+                            css.draggableHeading,
+                            snapshot.isDragging && css.__dragging,
+                          ])}
+                        >
+                          {header.name}
+                          <Handle className={css._handle} />
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
+        </>
+      )}
     </Layout>
   );
 }

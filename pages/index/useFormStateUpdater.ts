@@ -1,14 +1,14 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { formState } from '../../state/formState';
+import { csvData } from '../../state/csvData';
 
 export function useFormStateUpdater(fileContents: string[][] | null) {
-  const { 1: setForm } = useRecoilState(formState);
+  const { 1: setForm } = useRecoilState(csvData);
 
   React.useEffect(
     () => {
       if (fileContents) {
-        setForm((curVal) => ({ ...curVal, csvData: fileContents }));
+        setForm(fileContents);
       }
     },
     [fileContents],
