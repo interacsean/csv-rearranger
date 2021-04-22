@@ -7,9 +7,13 @@ $clr-content: #161616;
 $clr-content-success: #1e8a00;
 $clr-content-error: #b80000;
 $clr-content-warning: #ea4600;
+$clr-disabled: #7c7c7c;
 
 $clr-primary: #2462c3;
 $clr-primary-dk: darken($clr-primary, 20%);
 $clr-secondary: #0f0;
 $clr-secondary-dk: darken($clr-secondary, 20%);
 $clr-neutral: #697180;
+$clr-neutral-lt: lighten($clr-neutral, 35%);
+$clr-neutral-lt2: lighten($clr-neutral, 45%);
+$clr-action: #0099ff
