@@ -1,5 +1,6 @@
 import { ChangeEvent, useCallback, useState } from 'react';
 import csvParse from 'csv-parse';
+import mapCsvDataTableHeaders from '../../utils/Data/mapCsvDataTableHeaders';
 
 function isNestedArray(data: any): data is string[][] {
   return Array.isArray(data) &&
@@ -11,7 +12,7 @@ function isNestedArray(data: any): data is string[][] {
 export default function useProcessFileUploadInput() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [fileContents, setFileContents] = useState<string[][] | null>(null);
+  const [fileContents, setFileContents] = useState<{}[] | null>(null);
 
   const handleFileUpload = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -25,8 +26,13 @@ export default function useProcessFileUploadInput() {
         setIsProcessing(false);
         const bstr = evt.target?.result;
         if (typeof bstr === 'string') {
-          csvParse(bstr, (err, csvData) => {
-            if (err || !isNestedArray(csvData)) {
+          csvParse(bstr, (err, csvDataTable) => {
+            if (err || !isNestedArray(csvDataTable)) {
+              setIsError(true);
+              return;
+            }
+            const csvData = mapCsvDataTableHeaders(csvDataTable);
+            if (!csvData) {
               setIsError(true);
               return;
             }
