@@ -1,11 +1,12 @@
-import Link from 'next/link';
 import React from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Layout from '../../components/Layout/Layout'
+import Button from '../../components/Button/Button';
+import Box from '../../components/Box/Box';
+import { ComponentWithClassNames } from '../../types/ComponentWithClassNames';
+import clx from '../../utils/Html/clx';
 import useConfigureLogic from './configure.logic';
 import css from './configure.module.scss';
-import clx from '../../utils/Html/clx';
-import { ComponentWithClassNames } from '../../types/ComponentWithClassNames';
 
 function Handle(props: ComponentWithClassNames) {
   return (
@@ -17,30 +18,33 @@ function Handle(props: ComponentWithClassNames) {
 }
 
 export default function ConfigurePage() {
-  const { headers, onDragEnd } = useConfigureLogic();
+  const {
+    headers,
+    onDragEnd,
+    toggleOption,
+    back,
+    next,
+  } = useConfigureLogic();
 
   return (
     <Layout title="Sample processor">
-      <Link href={'/'}>
-        <a>&lt; Back</a>
-      </Link>
       <h1>Configure data</h1>
-      {!headers ? (
-        "..."
+      {!headers.length ? (
+        <em>Resolving data...</em>
       ) : (
         <>
           <p>Prioritise your data fields based on relative importance when matching candidates.</p>
           <ul>
             <li>Drag to reorder the fields</li>
             <li>Fields at the top have higher priority</li>
-            <li>Uncheck any fields to exclude them from </li>
+            <li>Uncheck any fields you wish to exclude</li>
           </ul>
           {/*
            Sample: https://codesandbox.io/s/k260nyxq9v?file=/index.js:585-1069
           */}
           <DragDropContext onDragEnd={onDragEnd}>
             <Droppable droppableId="droppable">
-              {(provided, snapshot) => (
+              {(provided) => (
                 <div
                   {...provided.droppableProps}
                   ref={provided.innerRef}
@@ -58,9 +62,13 @@ export default function ConfigurePage() {
                             'flex --sec-center',
                             css.draggableHeading,
                             snapshot.isDragging && css.__dragging,
+                            !header.enabled && css.__disabled,
                           ])}
                         >
-                          {header.name}
+                          <label>
+                            <input type="checkbox" value="1" checked={header.enabled} onChange={() => toggleOption(header)} />
+                            &nbsp;{header.name}
+                          </label>
                           <Handle className={css._handle} />
                         </div>
                       )}
@@ -73,6 +81,15 @@ export default function ConfigurePage() {
           </DragDropContext>
         </>
       )}
+      <Box mt={1} flex>
+        <Box className={css.buttonCtnr}>
+          <Button onClick={back} outline full-width-mobile>Back</Button>
+        </Box>
+        <Box ml={1} />
+        <Box className={css.buttonCtnr}>
+          <Button onClick={next} full-width-mobile>Next</Button>
+        </Box>
+      </Box>
     </Layout>
   );
 }

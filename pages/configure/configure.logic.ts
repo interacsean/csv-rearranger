@@ -11,6 +11,11 @@ function reorder<T>(list: T[], startIndex: number, endIndex: number) {
 
   return result;
 }
+function sinkDisabled<T extends { enabled: boolean }>(a: T, b: T) {
+  return a.enabled && !b.enabled ? -1
+    : !a.enabled && b.enabled ? 1
+    : 0;
+}
 
 export default function useConfigureLogic() {
   const [headers, setHeaderState] = useRecoilState(headersState);
@@ -28,15 +33,13 @@ export default function useConfigureLogic() {
 
   React.useEffect(
     function saveInitialHeaders() {
-      if (!headers.length) {
-        setHeaderState(
-          csvData && csvData[0] ? Object.keys(csvData[0]).map(
-            name => ({ name, enabled: true }),
-          ) : [],
-        );
-      }
+      setHeaderState(
+        csvData && csvData[0] ? Object.keys(csvData[0]).map(
+          name => ({ name, enabled: true }),
+        ) : [],
+      );
     },
-    [!headers.length && csvData.length],
+    [csvData],
   );
 
   const onDragEnd = React.useCallback(
@@ -45,13 +48,43 @@ export default function useConfigureLogic() {
         headers,
         result.source.index,
         result.destination.index
-      ))
+      ).sort(sinkDisabled));
     },
-    [headers],
+    [headers, setHeaderState],
+  );
+
+  const toggleOption = React.useCallback(
+    (header: typeof headers[0]) => {
+      setHeaderState(headers.map(
+        tHeader => tHeader.name !== header.name
+          ? tHeader
+          : {
+            name: tHeader.name,
+            enabled: !header.enabled,
+          }
+      ).sort(sinkDisabled));
+    },
+    [setHeaderState, headers],
+  );
+
+  const next = React.useCallback(
+    () => {
+      router.push('/results');
+    },
+    [router],
+  );
+  const back = React.useCallback(
+    () => {
+      router.replace('/');
+    },
+    [router],
   );
 
   return {
     headers,
     onDragEnd,
+    toggleOption,
+    next,
+    back,
   }
 }

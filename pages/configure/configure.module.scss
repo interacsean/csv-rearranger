@@ -26,9 +26,18 @@
   &.__dragging {
     background-color: lighten($clr-action, 40%);
   }
+  &.__disabled {
+    color: $clr-disabled;
+  }
 }
 
 .dragHandle {
   transform: rotate(90deg);
   line-height: 4px;
+}
+
+.buttonCtnr {
+  @include mobile-only {
+    flex: 1 0 auto;
+  }
 }
