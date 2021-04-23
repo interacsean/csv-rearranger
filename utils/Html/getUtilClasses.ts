@@ -36,29 +36,36 @@ export interface UtilProps {
   ph?: number | false;
   pv?: number | false;
 }
+type UtilPropsKeys = (keyof UtilProps)[];
 
-const getUtilClasses = (props: UtilProps) => {
-  return [
-    'm',
-    'mt',
-    'mr',
-    'mb',
-    'ml',
-    'mh',
-    'mv',
-    'p',
-    'pt',
-    'pr',
-    'pb',
-    'pl',
-    'ph',
-    'pv',
-  ]
-    .map(
-      //@ts-ignore (
+const utilPropKeys: UtilPropsKeys = <UtilPropsKeys>[
+  'm',
+  'mt',
+  'mr',
+  'mb',
+  'ml',
+  'mh',
+  'mv',
+  'p',
+  'pt',
+  'pr',
+  'pb',
+  'pl',
+  'ph',
+  'pv',
+];
+
+/**
+ * Create an array of known utility classnames from a props object
+ *
+ * E.g. props of:  { mv: 1, ph: 1 / 2 }
+ * Returns:        ['mv-1', 'ph-1-2']
+ */
+function getUtilClasses<P extends UtilProps>(props: P) {
+  return utilPropKeys.map(
       (pfx) => applyUtilClasses(pfx, props[pfx]),
     )
     .filter((x) => x !== false);
-};
+}
 
 export default getUtilClasses;

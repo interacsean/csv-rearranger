@@ -1,10 +1,8 @@
 import React from 'react';
-
-import { ButtonProps } from './Button.props';
 import clx from '../../utils/Html/clx';
-
-import css from './Button.module.scss';
 import Box from '../Box/Box';
+import { ButtonProps } from './Button.props';
+import css from './Button.module.scss';
 
 const Button = (props: ButtonProps) => {
   const onClickHandler = React.useCallback(

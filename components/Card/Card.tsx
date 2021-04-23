@@ -1,11 +1,9 @@
 import { FC } from 'react';
 import React from 'react';
-
-import { CardProps } from './Card.props';
-
-import css from './Card.module.scss';
 import clx from '../../utils/Html/clx';
 import Box from '../Box/Box';
+import css from './Card.module.scss';
+import { CardProps } from './Card.props';
 
 const Card: FC<CardProps> = (props: CardProps) => {
   return (

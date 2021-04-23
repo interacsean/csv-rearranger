@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Box from '../Box/Box';
 
 import css from './Layout.module.scss';
-import Card from '../Card/Card.view';
+import Card from '../Card/Card';
 import Section from '../Section/Section';
 
 type Props = {

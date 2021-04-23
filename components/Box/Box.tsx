@@ -40,20 +40,19 @@ const Box: FC<BoxProps> = ({
 
   const tagProps = (Object.keys(
     props
-  ) as (keyof typeof props)[]).reduce(
+  ) as (keyof typeof props)[]).reduce<Partial<BoxProps>>(
     (acc, tagPropName ) => {
-      if (NON_TAG_PROPS.includes(tagPropName)) return acc;
-      // Note: mutation here
-      if (props[tagPropName] !== undefined) {
+      if (!NON_TAG_PROPS.includes(tagPropName) && props[tagPropName] !== undefined) {
+        // Note: careful mutation here to avoid potential performance issues
         acc[tagPropName] = props[tagPropName];
       }
       return acc;
     },
-    {} as Partial<BoxProps>,
+    {},
   )
 
   return (
-    // @ts-ignore (Assumes props.tagName is a valid html element)
+    // @ts-ignore (Assuming props.tagName is a valid html element, and that tagProps are applicable to it)
     <Tag
       className={clx([
         className && clx(className),
