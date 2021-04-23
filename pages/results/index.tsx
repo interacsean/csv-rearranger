@@ -12,13 +12,13 @@ export default function ResultsPage() {
     <Layout title="Get your results - CSV re-arranger">
       <h1>Download re-arranged CSV</h1>
       <p>Click below to retrieve the new version of your CSV file.</p>
-      <Box mt={1} flex>
+      <Box mt={3} flex>
         <Box className={css.buttonCtnr}>
-          <Button outline onClick={logic.back}>Back</Button>
+          <Button outline onClick={logic.back} full-width>Back</Button>
         </Box>
         <Box ml={1} />
         <Box className={css.buttonCtnr}>
-          <Button onClick={logic.getCSV}>Download</Button>
+          <Button onClick={logic.getCSV} full-width>Download</Button>
         </Box>
       </Box>
     </Layout>

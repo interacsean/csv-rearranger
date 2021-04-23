@@ -16,6 +16,12 @@ $bkpt-desktop-large: 1280px;
 }
 
 @mixin tablet-down {
+  @media (max-width: #{$bkpt-tablet - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet-large-down {
   @media (max-width: #{$bkpt-tablet-large - 1px}) {
     @content;
   }

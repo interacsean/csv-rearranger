@@ -70,11 +70,11 @@ export default function ConfigurePage() {
       )}
       <Box mt={1} flex>
         <Box className={css.buttonCtnr}>
-          <Button onClick={back} outline full-width-mobile>Back</Button>
+          <Button onClick={back} outline full-width>Back</Button>
         </Box>
         <Box ml={1} />
         <Box className={css.buttonCtnr}>
-          <Button onClick={next} full-width-mobile>Next</Button>
+          <Button onClick={next} full-width>Next</Button>
         </Box>
       </Box>
     </Layout>

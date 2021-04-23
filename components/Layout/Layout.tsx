@@ -20,8 +20,8 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet" />
     </Head>
     <Section noVPad>
-      <Box flex-center flex-col flex-sec="stretch" className={css.container}>
-        <Card className={css._card}>
+      <Box flex-col flex-sec="stretch" className={css.container}>
+        <Card className={css._card} no-pad>
           {children}
         </Card>
       </Box>
