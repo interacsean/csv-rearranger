@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import Layout from '../components/Layout/Layout'
+import Layout from '../components/Layout'
 import Button from '../components/Button/Button';
 import Box from '../components/Box/Box';
 import css from './index/index.module.scss';
@@ -46,7 +46,9 @@ export default function IndexPage() {
           Next
         </Button>
       </Box>
-      <p className={css.securityMsg}>&#128274; Files are securely processed without ever leaving your browser</p>
+      <p className={css.securityMsg}>
+        &#128274; Files are securely processed without ever leaving your browser
+      </p>
     </Layout>
   );
 }

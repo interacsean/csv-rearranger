@@ -2,11 +2,10 @@ import { ChangeEvent, useCallback, useState } from 'react';
 import csvParse from 'csv-parse';
 import mapCsvDataTableHeaders from '../../utils/Data/mapCsvDataTableHeaders';
 
-function isNestedArray(data: any): data is string[][] {
+function isNestedArray(data: any): data is any[][] {
   return Array.isArray(data) &&
     data.length > 0 &&
-    Array.isArray(data[0]) &&
-    data[0].length > 0;
+    data.every(ele => Array.isArray(ele) && ele.length > 0);
 }
 
 export default function useProcessFileUploadInput() {
@@ -39,7 +38,8 @@ export default function useProcessFileUploadInput() {
             setFileContents(csvData);
           });
         } else {
-          console.warn('Unknown content type')
+          console.warn('Unknown content type');
+          setIsError(true);
         }
       };
       reader.onerror = () => {

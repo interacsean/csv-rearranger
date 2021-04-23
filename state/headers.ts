@@ -1,6 +1,8 @@
 import { atom } from 'recoil';
 
-export const headers = atom({
+export type Header = { name: string, enabled: boolean };
+
+export const headers = atom<Header[]>({
   key: 'headers',
-  default: [] as { name: string, enabled: boolean }[],
+  default: [],
 });

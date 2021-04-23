@@ -1,21 +1,12 @@
 import React from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import Layout from '../../components/Layout/Layout'
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import Layout from '../../components/Layout'
 import Button from '../../components/Button/Button';
 import Box from '../../components/Box/Box';
-import { ComponentWithClassNames } from '../../types/ComponentWithClassNames';
 import clx from '../../utils/Html/clx';
+import { Handle } from './Handle/Handle';
 import useConfigureLogic from './configure.logic';
 import css from './configure.module.scss';
-
-function Handle(props: ComponentWithClassNames) {
-  return (
-    <span className={`${props.className ? clx(props.className) : ''} ${css.dragHandle}`}>
-      &#8226;&#8226;&#8226;<br/>
-      &#8226;&#8226;&#8226;
-    </span>
-  );
-}
 
 export default function ConfigurePage() {
   const {
