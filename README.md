@@ -29,3 +29,8 @@ or build and run for production with:
 ```bash
 npm run build && npm start
 ```
+
+### Known issues (the /* todo */ list)
+- Remove visual flicker when dragging headers
+- Retain headers configuration when navigating back and forth through steps
+- Correctly escape commas and quotes in created file

@@ -24,15 +24,11 @@ export default function ConfigurePage() {
         <em>Resolving data...</em>
       ) : (
         <>
-          <p>Prioritise your data fields based on relative importance when matching candidates.</p>
+          <p>Re-arrange your data</p>
           <ul>
-            <li>Drag to reorder the fields</li>
-            <li>Fields at the top have higher priority</li>
-            <li>Uncheck any fields you wish to exclude</li>
+            <li>Drag to reorder the columns by heading</li>
+            <li>Uncheck any columns you wish to exclude</li>
           </ul>
-          {/*
-           Sample: https://codesandbox.io/s/k260nyxq9v?file=/index.js:585-1069
-          */}
           <DragDropContext onDragEnd={onDragEnd}>
             <Droppable droppableId="droppable">
               {(provided) => (

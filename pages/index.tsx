@@ -21,7 +21,7 @@ export default function IndexPage() {
     <Layout title="CSV re-arranger">
       <h1>Select a file</h1>
       <p className="mb-1-2">
-        Select a CSV file to be re-arranged:
+        Select a CSV file to be re-arranged.  Your file should include a header row:
       </p>
       <p className="mt-1-2">(<a href="/sample.csv">Download a test csv file here</a>)</p>
       <Box mv={2}>
