@@ -1,8 +1,8 @@
-import { useRecoilState } from 'recoil';
-import { headers as headersState } from '../../state/headers';
-import { csvData as csvDataState } from '../../state/csvData';
+import { useEffect, useCallback } from 'react';
 import { useRouter } from 'next/router';
-import React from 'react';
+import { useRecoilState } from 'recoil';
+import { headersState as headersState } from '../../state/headers';
+import { csvDataState as csvDataState } from '../../state/csvData';
 
 function reorder<T>(list: T[], startIndex: number, endIndex: number) {
   const result = Array.from(list);
@@ -22,7 +22,7 @@ export default function useConfigureLogic() {
   const [csvData] = useRecoilState(csvDataState);
 
   const router = useRouter();
-  React.useEffect(
+  useEffect(
     function redirectToHomeOnEmptyForm() {
       if (csvData.length === 0) {
         router.replace('/');
@@ -31,7 +31,7 @@ export default function useConfigureLogic() {
     [csvData],
   );
 
-  React.useEffect(
+  useEffect(
     function saveInitialHeaders() {
       setHeaderState(
         csvData && csvData[0] ? Object.keys(csvData[0]).map(
@@ -42,7 +42,7 @@ export default function useConfigureLogic() {
     [csvData],
   );
 
-  const onDragEnd = React.useCallback(
+  const onDragEnd = useCallback(
     (result) => {
       setHeaderState(reorder(
         headers,
@@ -53,7 +53,7 @@ export default function useConfigureLogic() {
     [headers, setHeaderState],
   );
 
-  const toggleOption = React.useCallback(
+  const toggleOption = useCallback(
     (header: typeof headers[0]) => {
       setHeaderState(headers.map(
         tHeader => tHeader.name !== header.name
@@ -67,16 +67,12 @@ export default function useConfigureLogic() {
     [setHeaderState, headers],
   );
 
-  const next = React.useCallback(
-    () => {
-      router.push('/results');
-    },
+  const next = useCallback(
+    () => router.push('/results'),
     [router],
   );
-  const back = React.useCallback(
-    () => {
-      router.replace('/');
-    },
+  const back = useCallback(
+    () => router.replace('/'),
     [router],
   );
 

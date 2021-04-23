@@ -1,11 +1,10 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout'
-import Button from '../components/Button/Button';
+import Button from '../components/Button';
 import Box from '../components/Box/Box';
 import css from './index/index.module.scss';
-import useProcessFileUploadInput from './index/useProcessFileUploadInput';
-import { useFormStateUpdater } from './index/useFormStateUpdater';
+import useUploadLogic from './index/index.logic';
 
 export default function IndexPage() {
   const {
@@ -13,17 +12,16 @@ export default function IndexPage() {
     isError,
     fileContents,
     handleFileUpload,
-  } = useProcessFileUploadInput()
-  useFormStateUpdater(fileContents);
+  } = useUploadLogic()
 
   const router = useRouter();
   const onNextClick = React.useCallback(() => router.push('/configure'), []);
 
   return (
-    <Layout title="Sample processor">
-      <h1>File upload</h1>
+    <Layout title="CSV re-arranger">
+      <h1>Select a file</h1>
       <p className="mb-1-2">
-        Select a CSV file to upload:
+        Select a CSV file to be re-arranged:
       </p>
       <p className="mt-1-2">(<a href="/sample.csv">Download a test csv file here</a>)</p>
       <Box mv={2}>

@@ -1,0 +1,7 @@
+@import '../../theme/common';
+
+.buttonCtnr {
+  @include mobile-only {
+    flex: 1 0 auto;
+  }
+}

@@ -1,8 +1,8 @@
 import React from 'react';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import Layout from '../../components/Layout'
-import Button from '../../components/Button/Button';
-import Box from '../../components/Box/Box';
+import Button from '../../components/Button';
+import Box from '../../components/Box';
 import clx from '../../utils/Html/clx';
 import { Handle } from './Handle/Handle';
 import useConfigureLogic from './configure.logic';
@@ -18,7 +18,7 @@ export default function ConfigurePage() {
   } = useConfigureLogic();
 
   return (
-    <Layout title="Sample processor">
+    <Layout title="Re-arrange your data - CSV re-arranger">
       <h1>Configure data</h1>
       {!headers.length ? (
         <em>Resolving data...</em>
