@@ -1,8 +1,8 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import { headersState as headersState } from '../../../state/headers';
-import { csvDataState as csvDataState } from '../../../state/csvData';
+import { headersState } from '../../../state/headers';
+import { csvDataState } from '../../../state/csvData';
 
 function reorder<T>(list: T[], startIndex: number, endIndex: number) {
   const result = Array.from(list);
@@ -18,8 +18,16 @@ function sinkDisabled<T extends { enabled: boolean }>(a: T, b: T) {
 }
 
 export default function useConfigureLogic() {
-  const [headers, setHeaderState] = useRecoilState(headersState);
+  const [ globalHeaders, setGlobalHeaderState ] = useRecoilState(headersState);
+  const [ headers, setHeaderState ] = useState(globalHeaders);
   const [csvData] = useRecoilState(csvDataState);
+
+  useEffect(
+    function updateGlobalHeadersOnLocalHeaderChange() {
+      setGlobalHeaderState(headers);
+    },
+    [headers],
+  );
 
   const router = useRouter();
   useEffect(

@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
-import { headersState as headersState } from '../../../state/headers';
-import { csvDataState as csvDataState } from '../../../state/csvData';
+import { headersState } from '../../../state/headers';
+import { csvDataState } from '../../../state/csvData';
 import { useRouter } from 'next/router';
 import download from '../../../utils/Html/downloadClientFile';
 import { makeCsvFileContent } from '../../../utils/Html/makeCsvFileContent';
